@@ -4,7 +4,7 @@ FuncBash
 A functional-programming library for bash scripting.
 ---
 
-Well, this is actually just a proof of concept of writing a bash library 
+Well, this is actually just a very dirty, hack of a proof-of-concept of writing something remotely resembling a bash library 
 for functional programming in bash. Just having fun, and seeing how much 
 can I stretch this before cheating and looking around at what others have
 already done. And there is some things already done, as a quick google search shows.
