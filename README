@@ -119,7 +119,7 @@ M
 88
 
 
-*Internally map bash-'evaluates' the lambda expression given. For an aritmetic calculation it know how to evaluate it by feeding it to an echo function.
+*Internally map bash-'evaluates' the lambda expression given. For an aritmetic calculation it knows how to evaluate it by feeding it to an echo function.
 However, anything else needs thus to be  a valid bash function that can be evaluated. Ex.: Here we calculate the function f(x)=x^x for the first 30 integers.
 >list {1..30} | map '\xx . echo $( echo "e($xx*l($xx))" | bc -lq )'
 1.00000000000000000000
@@ -193,7 +193,7 @@ abcdefghijklmnopqrstuvwxyz
 BUGS
 ---
 
-#This is a very dirty hack and thus bugs a lurking in darkness. The broken pipe error points to
+#This is a very dirty hack and thus bugs are lurking in darkness. The broken pipe error points to
 #a buggy implementation of list. But this is not the only known bug that's there. See second example. 
 >cat ./functionalProgramming.sh| map '\cc . printf "%s" $cc '| head -10
 map: DEBUG: func:>printf "%s" $@ <
