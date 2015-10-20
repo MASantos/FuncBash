@@ -56,5 +56,32 @@ done
 
 # foldl :: (b -> a -> b) -> b -> [a] -> b
 foldl(){
-true
+fnc="$1"
+this_acc=$2
+while read i ; do
+  this_acc=`eval "$1 $this_acc $i"`
+done
+echo "$this_acc"
+}
+
+#First element of a list (head)
+#A pure bash implementation seems more complicated if possible at all:
+#>ist {1..14} | lead
+#1
+#bash: echo: write error: Broken pipe
+#>list {1..13} | lead
+#1
+#if lead is given by
+#lead(){
+#read lead_i ; echo $lead_i 
+#}
+#Thus, we'll assume some basic gnu tools available like tail/head
+#However, this also has limitations:
+#>list {1..300} | head -1
+#1
+#bash: echo: write error: Broken pipe
+lead(){ head -1 ;}
+#Remaining part of a list (tail)
+remain(){
+remain_myfirstln=0; while [ $remain_myfirstln -eq 0 ] ; do remain_myfirstln=$(( $remain_myfirstln + 1 )); read remain_i ; continue; done; while read remain_i ; do echo $remain_i ; done 
 }

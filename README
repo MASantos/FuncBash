@@ -15,7 +15,7 @@ TODO
 
 I just wrote a list wrapper, a map function and  filter function.
 
-Todo next could be a foldl and foldr functions, list comprehension,...
+Todo next could be a foldr and zipWith functions, list comprehension,...
 
 
 Examples
@@ -153,4 +153,63 @@ However, anything else needs thus to be  a valid bash function that can be evalu
 2567686153161211134318183201268117865953285.47366537178481729925
 205891132094648999980007817024485620316656473.32707809033731206005
 
+>mysum(){ echo $(( $1 + $2 )) ;}
+>myconcat(){ echo "$1$2" ;}
+>list {1..3} | foldl mysum 0
+6
+>list {1..5} | foldl mysum 0
+15
+>list {1..5} | foldl mysum 15
+30
+>list {a..c} | foldl myconcat ""
+abc
+>list {a..z} | foldl myconcat ""
+abcdefghijklmnopqrstuvwxyz
+
+>list {1..20} | lead
+1
+
+>list {1..20} | remain
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+
+BUGS
+---
+
+#This is a very dirty hack and thus bugs a lurking in darkness. The broken pipe error points to
+#a buggy implementation of list. But this is not the only known bug that's there. See second example. 
+>cat ./functionalProgramming.sh| map '\cc . printf "%s" $cc '| head -10
+map: DEBUG: func:>printf "%s" $@ <
+#!/bin/bash
+
+errmsg(){
+[$#-ne2]&&errmsg"errmsg""missingargumentsincalltoerrmsg:$@"
+echo"$1:ERROR:$2"
+}
+
+list(){#({n..m}|{n1,n2,..nk})->an...am|a1...ak||[a]->[a]
+test"$(echo"$*")"=="{}"-o"$(echo"$*")"=="{..}"&&echo""&&return0
+#islist=`echo"$*"|grep-E"[0-9]+[[:space:]]+([0-9]+[[:space:]]+)*[0-9]+|[a-zA-Z]+[[:space:]]+([a-zA-Z]+[[:space:]]+)*[a-zA-Z]+"`
+bash: echo: write error: Broken pipe
+
+>cat ./functionalProgramming.sh | foldl myconcat "" | head -10
+bash: eval: line -54: syntax error near unexpected token `('
+bash: eval: line -54: `myconcat  errmsg(){'
 
