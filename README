@@ -13,7 +13,7 @@ already done. And there is some things already done, as a quick google search sh
 TODO
 ---
 
-I just wrote a list wrapper, a map function and  filter function.
+I just wrote a list wrapper, a map function, a filter function, a foldl, and a list lead and list remain functions.
 
 Todo next could be a foldr and zipWith functions, list comprehension,...
 
