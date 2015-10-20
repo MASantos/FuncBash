@@ -21,6 +21,17 @@ Todo next could be a foldr and zipWith functions, list comprehension,...
 Examples
 ---
 
+>list {a,A,G,f,H,4,l,M}
+a
+A
+G
+f
+H
+4
+l
+M
+
+
 >list {a,A,G,f,H,4,l,M} | map '\cc . tr [[:lower:]] [[:upper:]] <<< $cc '
 A
 A
