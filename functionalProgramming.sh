@@ -6,6 +6,7 @@ echo "$1: ERROR: $2"
 }
 
 list(){ # ( {n..m} | {n1,n2,..nk} ) -> an ... am | a1 ... ak  || [a] -> [a]
+test "$(echo "$*")" == "{}" -o "$(echo "$*")" == "{..}" && echo "" && return 0
 #islist=`echo "$*"| grep -E "[0-9]+[[:space:]]+([0-9]+[[:space:]]+)*[0-9]+|[a-zA-Z]+[[:space:]]+([a-zA-Z]+[[:space:]]+)*[a-zA-Z]+"`
 islist=`echo "$*"| grep -E "[[:alnum:]]+[[:space:]]+([[:alnum:]]+[[:space:]]+)*[[:alnum:]]+"`
 test "x$islist" == "x" && errmsg "List" ">$*< not a list." && return 1
