@@ -56,6 +56,18 @@ H
 L
 M
 
+#map can apply functions to a list that otherwise can't be piped directly to it -contrary to the previous trivial examples.
+#For instance
+>echo a | printf "thisprint:%s \n"
+thisprint:
+>list {a..d} | printf "thisprint:%s "
+thisprint: bash: echo: write error: Broken pipe
+>list {a..d} | map '\c . myprint  $c'
+map: DEBUG: func:>myprint  $@<
+myprint:a
+myprint:b
+myprint:c
+myprint:d
 
 >list {a,A,G,f,H,4,l,M} | filter '\a . grep [[:upper:]] <<< $a '
 A
@@ -174,8 +186,8 @@ However, anything else needs thus to be  a valid bash function that can be evalu
 30
 >list {a..c} | foldl myconcat ""
 abc
->list {a..z} | foldl myconcat ""
-abcdefghijklmnopqrstuvwxyz
+>list {a..z} | foldl myconcat "prefix-"
+prefix-abcdefghijklmnopqrstuvwxyz
 
 >list {1..20} | lead
 1
