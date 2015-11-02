@@ -62,6 +62,7 @@ M
 thisprint:
 >list {a..d} | printf "thisprint:%s "
 thisprint: bash: echo: write error: Broken pipe
+>myprint(){ printf "myprint:%s " <<< $@ ;}
 >list {a..d} | map '\c . myprint  $c'
 myprint:a
 myprint:b
